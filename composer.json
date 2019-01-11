@@ -1,0 +1,40 @@
+{
+  "name": "pawelwankiewicz/rss-to-csv",
+  "description": "A simple PHP CLI application to converting RSS resource into .csv file",
+  "keywords": [
+    "rss",
+    "csv"
+  ],
+  "homepage": "http://example.com",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Paweł Wankiewicz",
+      "email": "pawellwankiewicz@gmail.com",
+      "homepage": "http://example.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=7.1.0",
+    "ext-SimpleXML": "*"
+  },
+  "require-dev": {
+    "mockery/mockery": "dev-master@dev"
+  },
+  "autoload": {
+    "classmap": [
+      "src",
+      "tests"
+    ],
+    "psr-4": {
+      "PawelWankiewiczRekrutacjaHRtec\\": [
+        "src",
+        "tests"
+      ]
+    }
+  },
+  "config": {
+    "optimize-autoloader": true
+  }
+}
