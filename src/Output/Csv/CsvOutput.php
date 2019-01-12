@@ -12,34 +12,15 @@ abstract class CsvOutput implements OutputInterface
     protected $url;
     protected $fileFullPath;
 
-    public function __construct(array $commandLineArguments, RssResourceFactory $resourceFactory)
+    public function __construct(array $resourcesBundle, RssResourceFactory $resourceFactory)
     {
-        $this->checkFilePathFormat($commandLineArguments);
-        $rssResource = $resourceFactory->create($commandLineArguments);
+        $this->file = $resourcesBundle[1];
+        $rssResource = $resourceFactory->create($resourcesBundle);
         $this->content = $rssResource->getContent();
         $this->url = $rssResource->getUrl();
         $this->createOutputDirectory();
         $this->fileFullPath = $GLOBALS["OUTPUT_DIRECTORY"] . $this->file;
-    }
-
-    public function checkFilePathFormat(array $commandLineArguments): void
-    {
-        if (!isset($commandLineArguments[2])) {
-            $this->file = $GLOBALS["OUTPUT_FILE_NAME"];
-        } else if (!$this->validateFilePath()) {
-            die("Wrong file path format. File path shouldn't contain \/?.\":*|<>");
-        } else {
-            $this->file = $commandLineArguments[2];
-        }
-
-        if (pathinfo($this->file, 4) !== "csv") {
-            $this->file .= ".csv";
-        }
-    }
-
-    public function validateFilePath(): bool
-    {
-        return !preg_match('/[^A-Za-z0-9.#\\-$]/', $this->file);
+        $this->saveToFile();
     }
 
     public function getFileName(): string
@@ -63,6 +44,11 @@ abstract class CsvOutput implements OutputInterface
             fputcsv($fp, [$entry->title, $entry->description, $entry->link, $entry->pubDate, $entry->creator]);
         }
         fclose($fp);
+    }
+
+    public function displayOutputMessage(): void
+    {
+        echo sprintf('Data from %s was saved to %s%s', $this->url, $GLOBALS["OUTPUT_DIRECTORY"], $this->file);
     }
 
     abstract public function saveToFile(): void;

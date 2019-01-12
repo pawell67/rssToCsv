@@ -4,8 +4,8 @@ namespace PawelWankiewiczRekrutacjaHRtec\Resource\Rss;
 
 class RssResourceFactory
 {
-    public function create($commandLineArguments): RssResource
+    public function create($resourcesBundle): RssResource
     {
-        return new RssResource($commandLineArguments);
+        return new RssResource($resourcesBundle);
     }
 }

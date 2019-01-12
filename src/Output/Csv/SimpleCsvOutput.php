@@ -11,5 +11,6 @@ class SimpleCsvOutput extends CsvOutput
         fputcsv($fp, $GLOBALS["COLUMNS_HEADERS"]);
 
         $this->iterateThroughData($fp);
+        $this->displayOutputMessage();
     }
 }

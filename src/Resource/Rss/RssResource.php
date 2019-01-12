@@ -10,20 +10,9 @@ class RssResource implements ResourceInterface
     protected $url;
     protected $content;
 
-    public function __construct(array $commandLineArguments)
+    public function __construct(array $resourcesBundle)
     {
-        $this->checkUrlFormat($commandLineArguments);
-    }
-
-    public function checkUrlFormat(array $commandLineArguments): void
-    {
-        if (!isset($commandLineArguments[1])) {
-            $this->url = $GLOBALS["URL"];
-        } else if (!substr($this->url, 0, 7) === "http://" || !substr($this->url, 0, 8) === "https://") {
-            die("Wrong URL format. URL should starts with `http://` or `https://`.");
-        } else {
-            $this->url = $commandLineArguments[1];
-        }
+        $this->url = $resourcesBundle[0];
     }
 
     public function getContent()
