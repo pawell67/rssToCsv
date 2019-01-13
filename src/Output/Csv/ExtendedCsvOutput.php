@@ -13,6 +13,5 @@ class ExtendedCsvOutput extends CsvOutput
 
         $this->iterateThroughData($fp);
         $this->displayOutputMessage();
-
     }
 }

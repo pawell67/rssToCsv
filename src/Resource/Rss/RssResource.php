@@ -18,11 +18,12 @@ class RssResource implements ResourceInterface
     public function getContent()
     {
         $this->content = @file_get_contents($this->url);
+
         if ($this->content === false) {
             return "This URL is unreachable.";
         }
-        $this->convertToXML();
-        return $this->content;
+
+        return $this->convertToXML();
     }
 
     public function getUrl(): string
@@ -36,13 +37,14 @@ class RssResource implements ResourceInterface
         return $this->url;
     }
 
-    private function convertToXML(): void
+    private function convertToXML()
     {
         set_error_handler(function ($errno, $errstr) {
             throw new \Exception($errstr, $errno);
         });
+
         try {
-            $this->content = new SimpleXMLElement($this->content);
+            return new SimpleXMLElement($this->content);
         } catch (\Exception $exception) {
             restore_error_handler();
             die("There is no relevant data in this URL.");

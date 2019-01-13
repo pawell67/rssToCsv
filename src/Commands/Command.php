@@ -9,15 +9,15 @@ class Command
         $this->checkArguments($commandLineArguments);
     }
 
-    protected function checkArguments(array $commandLineArguments)
+    public function checkArguments(array $commandLineArguments)
     {
-        if (!isset($commandLineArguments[1]) || substr($commandLineArguments[1], 0, 4) === "help") {
+        if (!isset($commandLineArguments[1]) || $commandLineArguments[1] === "help") {
             return new Help();
         } else if (substr($commandLineArguments[1], 0, 3) === "csv") {
             return new Csv($commandLineArguments);
         } else {
-            return "Wrong command. Type help to see available commands.";
+            $message = "Wrong command. Type help to see available commands.";
+            echo $message;
         }
     }
-
 }

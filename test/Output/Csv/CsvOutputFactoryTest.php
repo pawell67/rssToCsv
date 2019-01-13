@@ -21,6 +21,8 @@ class CsvOutputFactoryTest extends TestCase
         ];
         $this->resourcesBundle = ["http://maxburstein.com/rss", "file01.csv"];
         $this->csvFactory = new CsvOutputFactory();
+        $this->setOutputCallback(function () {
+        });
     }
 
     public function testCreateSimpleCsvOutput(): void

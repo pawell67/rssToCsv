@@ -35,7 +35,7 @@ class CsvOutputTest extends TestCase
 
     public function testDisplayOutputMessage(): void
     {
-        $this->assertEquals("Data from http://maxburstein.com/rss was saved to output/file01.csv", $this->outputMessage);
+        $output = "Data from http://maxburstein.com/rss was saved to output/file01.csv";
+        $this->assertEquals($output, $this->outputMessage);
     }
-
 }

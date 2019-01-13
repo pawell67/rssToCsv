@@ -35,5 +35,4 @@ class RssResourceTest extends TestCase
         $content = $this->rssResource->getContent();
         $this->assertInstanceOf(SimpleXMLElement::class, $content);
     }
-
 }

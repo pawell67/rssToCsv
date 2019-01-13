@@ -36,7 +36,7 @@ abstract class CsvOutput implements OutputInterface
         }
     }
 
-    public function iterateThroughData($fp):void
+    public function iterateThroughData($fp): void
     {
         foreach ($this->content->channel->item as $entry) {
             $entry->description = strip_tags($entry->description);
