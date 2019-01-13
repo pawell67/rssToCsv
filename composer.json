@@ -20,17 +20,18 @@
     "ext-SimpleXML": "*"
   },
   "require-dev": {
-    "mockery/mockery": "dev-master@dev"
+    "mockery/mockery": "dev-master@dev",
+    "phpunit/phpunit": "6.5"
   },
   "autoload": {
     "classmap": [
       "src",
-      "tests"
+      "test"
     ],
     "psr-4": {
       "PawelWankiewiczRekrutacjaHRtec\\": [
         "src",
-        "tests"
+        "test"
       ]
     }
   },

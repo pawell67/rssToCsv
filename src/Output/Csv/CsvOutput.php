@@ -36,7 +36,7 @@ abstract class CsvOutput implements OutputInterface
         }
     }
 
-    public function iterateThroughData($fp)
+    public function iterateThroughData($fp):void
     {
         foreach ($this->content->channel->item as $entry) {
             $entry->description = strip_tags($entry->description);
@@ -48,7 +48,7 @@ abstract class CsvOutput implements OutputInterface
 
     public function displayOutputMessage(): void
     {
-        echo sprintf('Data from %s was saved to %s%s', $this->url, $GLOBALS["OUTPUT_DIRECTORY"], $this->file);
+        echo sprintf("Data from %s was saved to %s%s", $this->url, $GLOBALS["OUTPUT_DIRECTORY"], $this->file);
     }
 
     abstract public function saveToFile(): void;

@@ -9,7 +9,7 @@ class Help
         $this->showHelpMessage();
     }
 
-    private function showHelpMessage()
+    private function showHelpMessage():void
     {
         echo "\e[32mRssToCsv v0.1 \e[0m\n\n";
         echo "Usage: command [arguments]\n\n";

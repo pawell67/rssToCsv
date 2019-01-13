@@ -11,14 +11,13 @@ class Command
 
     protected function checkArguments(array $commandLineArguments)
     {
-        if (!isset($commandLineArguments[1]) || substr($commandLineArguments[1], 0, 10) === "help") {
+        if (!isset($commandLineArguments[1]) || substr($commandLineArguments[1], 0, 4) === "help") {
             return new Help();
         } else if (substr($commandLineArguments[1], 0, 3) === "csv") {
             return new Csv($commandLineArguments);
         } else {
-            die("Wrong command. Type help to see available commands.");
+            return "Wrong command. Type help to see available commands.";
         }
-
     }
 
 }

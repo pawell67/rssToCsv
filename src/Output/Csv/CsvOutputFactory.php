@@ -13,12 +13,12 @@ class CsvOutputFactory
         $this->resourceFactory = new RssResourceFactory();
     }
 
-    public function createSimpleCsvOutput($resourcesBundle)
+    public function createSimpleCsvOutput($resourcesBundle): SimpleCsvOutput
     {
         return new SimpleCsvOutput($resourcesBundle, $this->resourceFactory);
     }
 
-    public function createExtendedCsvOutput($resourcesBundle)
+    public function createExtendedCsvOutput($resourcesBundle): ExtendedCsvOutput
     {
         return new ExtendedCsvOutput($resourcesBundle, $this->resourceFactory);
     }

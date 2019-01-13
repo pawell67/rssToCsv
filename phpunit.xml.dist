@@ -4,8 +4,8 @@
         colors="true"
         verbose="true">
     <testsuites>
-        <testsuite name="SammyK Test Suite">
-            <directory>tests</directory>
+        <testsuite name="Paweł Wankiewicz Suite">
+            <directory>test</directory>
         </testsuite>
     </testsuites>
     <filter>

@@ -13,6 +13,13 @@ class RssResourceTest extends TestCase
 
     public function setUp(): void
     {
+        $GLOBALS = [
+            "OUTPUT_FILE_NAME" => "file.csv",
+            "URL" => "http://feeds.nationalgeographic.com/ng/News/News_Main",
+            "OUTPUT_DIRECTORY" => "output/",
+            "COLUMNS_HEADERS" => ["title", "description", "link", "pubDate", "creator"],
+            "_SERVER" => ["SCRIPT_NAME" => "console.php"]
+        ];
         $this->resourcesBundle = ["http://maxburstein.com/rss", "file01.csv"];
         $this->rssResource = new RssResource($this->resourcesBundle);
     }
@@ -29,10 +36,4 @@ class RssResourceTest extends TestCase
         $this->assertInstanceOf(SimpleXMLElement::class, $content);
     }
 
-    public function testCanNotGetContent()
-    {
-        $this->rssResource->setUrl("http://maxburtein.com");
-        $content = $this->rssResource->getContent();
-        $this->assertEquals("This URL is unreachable.", $content);
-    }
 }

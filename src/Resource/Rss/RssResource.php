@@ -19,7 +19,7 @@ class RssResource implements ResourceInterface
     {
         $this->content = @file_get_contents($this->url);
         if ($this->content === false) {
-            die("This URL is unreachable.");
+            return "This URL is unreachable.";
         }
         $this->convertToXML();
         return $this->content;
@@ -27,6 +27,12 @@ class RssResource implements ResourceInterface
 
     public function getUrl(): string
     {
+        return $this->url;
+    }
+
+    public function setUrl(string $url): string
+    {
+        $this->url = $url;
         return $this->url;
     }
 
@@ -39,7 +45,7 @@ class RssResource implements ResourceInterface
             $this->content = new SimpleXMLElement($this->content);
         } catch (\Exception $exception) {
             restore_error_handler();
-            die("There is no relevant data in this URL");
+            die("There is no relevant data in this URL.");
         }
     }
 }
