@@ -1,6 +1,6 @@
 <?php
 
-namespace PawelWankiewiczRekrutacjaHRtec\Output\Csv;
+namespace PawelWankiewiczRekrutacjaHRtec\Output\CsvOutput;
 
 class ExtendedCsvOutput extends CsvOutput
 {
