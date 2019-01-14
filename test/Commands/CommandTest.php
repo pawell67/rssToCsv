@@ -13,7 +13,6 @@ class CommandTest extends TestCase
     protected $wrongCommand;
     protected $helpCommand;
 
-
     protected function setUp(): void
     {
         $GLOBALS = [
