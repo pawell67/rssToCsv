@@ -3,12 +3,6 @@ declare(strict_types=1);
 
 use PawelWankiewiczRekrutacjaHRtec\Commands\Command;
 
-$GLOBALS = [
-    "OUTPUT_FILE_NAME" => "file.csv",
-    "URL" => "http://feeds.nationalgeographic.com/ng/News/News_Main",
-    "OUTPUT_DIRECTORY" => "output/",
-    "COLUMNS_HEADERS" => ["title", "description", "link", "pubDate", "creator"]
-];
 require("Output/OutputInterface.php");
 require("Output/Csv/CsvOutput.php");
 require("Output/Csv/SimpleCsvOutput.php");
@@ -20,5 +14,12 @@ require("Resource/Rss/RssResourceFactory.php");
 require("Commands/Help.php");
 require("Commands/Csv.php");
 require("Commands/Command.php");
+
+$GLOBALS = [
+    "OUTPUT_FILE_NAME" => "file.csv",
+    "URL" => "http://feeds.nationalgeographic.com/ng/News/News_Main",
+    "OUTPUT_DIRECTORY" => "output/",
+    "COLUMNS_HEADERS" => ["title", "description", "link", "pubDate", "creator"]
+];
 
 $client = new Command($argv);

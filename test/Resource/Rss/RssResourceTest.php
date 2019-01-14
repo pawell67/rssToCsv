@@ -29,7 +29,7 @@ class RssResourceTest extends TestCase
         $this->assertEquals("http://maxburstein.com/rss", $this->rssResource->getUrl());
     }
 
-    public function testCanGetContent()
+    public function testCanGetContent(): void
     {
         $this->url = $this->rssResource->getUrl();
         $content = $this->rssResource->getContent();

@@ -18,7 +18,7 @@ class Csv
         if (!isset($commandLineArguments[2])) {
             $this->url = $GLOBALS["URL"];
         } else {
-            $this->checkUrlFormat($commandLineArguments[2]);
+            $this->url = $this->checkUrlFormat($commandLineArguments[2]);
         }
 
         if (!isset($commandLineArguments[3])) {
@@ -32,16 +32,16 @@ class Csv
         $this->checkCommandFormat($commandLineArguments[1]);
     }
 
-    public function checkUrlFormat(string $url): void
+    public function checkUrlFormat(string $url): string
     {
         if (substr($url, 0, 7) !== "http://" && substr($url, 0, 8) !== "https://") {
             die("Wrong URL format. URL should starts with `http://` or `https://`.");
         } else {
-            $this->url = $url;
+            return $url;
         }
     }
 
-    public function checkFilePathFormat(string $file): void
+    public function checkFilePathFormat(string $file): string
     {
         if (!$this->validateFilePath($file)) {
             die("Wrong file path format. File path shouldn't contain \/?.\":*|<>");
@@ -52,6 +52,8 @@ class Csv
         if (pathinfo($this->file, 4) !== "csv") {
             $this->file .= ".csv";
         }
+
+        return $this->file;
     }
 
     public function checkCommandFormat(string $command): CsvOutput

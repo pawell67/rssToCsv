@@ -11,7 +11,7 @@ class CsvOutputFactoryTest extends TestCase
     protected $csvFactory;
     protected $resource;
 
-    public function setUp()
+    public function setUp(): void
     {
         $GLOBALS = [
             "OUTPUT_FILE_NAME" => "file.csv",
@@ -19,7 +19,7 @@ class CsvOutputFactoryTest extends TestCase
             "OUTPUT_DIRECTORY" => "output/",
             "COLUMNS_HEADERS" => ["title", "description", "link", "pubDate", "creator"]
         ];
-        $this->resourcesBundle = ["http://maxburstein.com/rss", "file01.csv"];
+        $this->resourcesBundle = ["http://feeds.nationalgeographic.com/ng/News/News_Main", "file01.csv"];
         $this->csvFactory = new CsvOutputFactory();
         $this->setOutputCallback(function () {
         });

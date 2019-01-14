@@ -36,14 +36,14 @@ abstract class CsvOutput implements OutputInterface
         }
     }
 
-    public function iterateThroughData($fp): void
+    public function iterateThroughData($filePath): void
     {
         foreach ($this->content->channel->item as $entry) {
             $entry->description = strip_tags($entry->description);
             $entry->pubDate = date("j F Y g:i:s", strtotime($entry->pubDate));
-            fputcsv($fp, [$entry->title, $entry->description, $entry->link, $entry->pubDate, $entry->creator]);
+            fputcsv($filePath, [$entry->title, $entry->description, $entry->link, $entry->pubDate, $entry->creator]);
         }
-        fclose($fp);
+        fclose($filePath);
     }
 
     public function displayOutputMessage(): void
