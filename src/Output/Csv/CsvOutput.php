@@ -38,17 +38,18 @@ abstract class CsvOutput implements OutputInterface
 
     public function iterateThroughData($filePath): void
     {
-        foreach ($this->content->channel->item as $entry) {
-            $entry->description = strip_tags($entry->description);
-            $entry->pubDate = date("j F Y g:i:s", strtotime($entry->pubDate));
-            fputcsv($filePath, [$entry->title, $entry->description, $entry->link, $entry->pubDate, $entry->creator]);
+        if (isset($this->content->channel)) {
+            foreach ($this->content->channel->item as $entry) {
+                $entry->description = strip_tags($entry->description);
+                $entry->pubDate = date("j F Y g:i:s", strtotime($entry->pubDate));
+                fputcsv($filePath, [$entry->title, $entry->description, $entry->link, $entry->pubDate, $entry->creator]);
+            }
+
+            echo sprintf("Data from %s was saved to %s%s", $this->url, $GLOBALS["OUTPUT_DIRECTORY"], $this->file);
+        } else {
+            echo "This url does not contain correct data.";
         }
         fclose($filePath);
-    }
-
-    public function displayOutputMessage(): void
-    {
-        echo sprintf("Data from %s was saved to %s%s", $this->url, $GLOBALS["OUTPUT_DIRECTORY"], $this->file);
     }
 
     abstract public function saveToFile(): void;

@@ -16,8 +16,7 @@ class Command
         } else if (substr($commandLineArguments[1], 0, 3) === "csv") {
             return new Csv($commandLineArguments);
         } else {
-            $message = "Wrong command. Type help to see available commands.";
-            echo $message;
+            echo "Wrong command. Type help to see available commands.";
         }
     }
 }

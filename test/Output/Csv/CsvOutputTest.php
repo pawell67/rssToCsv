@@ -37,25 +37,20 @@ class CsvOutputTest extends TestCase
         $this->assertDirectoryExists($GLOBALS["OUTPUT_DIRECTORY"]);
     }
 
-    public function testDisplayOutputMessage(): void
-    {
-        $output = "Data from http://feeds.nationalgeographic.com/ng/News/News_Main was saved to output/file02.csv";
-        $this->assertEquals($output, $this->outputMessage);
-    }
-
     public function testIterateThroughData(): void
     {
         $this->setOutputCallback(function () {
         });
         $this->csvOutputFactory->createSimpleCsvOutput($this->resourcesBundle);
-
         $fileLinesCount = 102;
         $lineCount = 0;
         $file = fopen($GLOBALS["OUTPUT_DIRECTORY"] . $this->resourcesBundle[1], "r");
+
         while (!feof($file)) {
             fgets($file);
             $lineCount++;
         }
+
         $this->assertEquals($fileLinesCount, $lineCount);
     }
 }

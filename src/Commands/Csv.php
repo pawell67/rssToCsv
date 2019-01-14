@@ -43,13 +43,13 @@ class Csv
 
     public function checkFilePathFormat(string $file): string
     {
-        if (!$this->validateFilePath($file)) {
-            die("Wrong file path format. File path shouldn't contain \/?.\":*|<>");
-        } else {
+        if ($this->validateFilePath($file)) {
             $this->file = $file;
+        } else {
+            die("Wrong file path format. File path shouldn't contain \/?.\":*|<>");
         }
 
-        if (pathinfo($this->file, 4) !== "csv") {
+        if (pathinfo($this->file, PATHINFO_EXTENSION) !== "csv") {
             $this->file .= ".csv";
         }
 
@@ -58,9 +58,9 @@ class Csv
 
     public function checkCommandFormat(string $command): CsvOutput
     {
-        if (substr($command, 0, 10) === "csv:simple") {
+        if ($command === "csv:simple") {
             return $this->factory->createSimpleCsvOutput($this->resourcesBundle);
-        } else if (substr($command, 0, 12) === "csv:extended") {
+        } else if ($command === "csv:extended") {
             return $this->factory->createExtendedCsvOutput($this->resourcesBundle);
         } else {
             die("Please provide correct command. Type help for available commands.");

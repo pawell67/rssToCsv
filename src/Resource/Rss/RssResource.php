@@ -34,6 +34,7 @@ class RssResource implements ResourceInterface
     public function setUrl(string $url): string
     {
         $this->url = $url;
+
         return $this->url;
     }
 
